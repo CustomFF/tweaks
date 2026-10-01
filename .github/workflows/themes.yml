@@ -6,8 +6,6 @@ on:
     branches: [master]
     paths:
       - "themes/**"
-      - "scripts/sign-themes.sh"
-      - "scripts/build-themes.sh"
 
 jobs:
   sign-and-release:
