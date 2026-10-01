@@ -17,6 +17,21 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Give each theme a version AMO has never seen
+        # AMO rejects resubmitting a version number it already has, and
+        # (confirmed live) even a run that errors out still registers the
+        # version it attempted — so a fixed version in manifest.json would
+        # need a manual bump before every single run. github.run_number
+        # only ever increases and is never reused for this workflow, so
+        # appending it guarantees a fresh version every time. Only the
+        # checked-out working copy changes, not what's committed.
+        run: |
+          for f in themes/*/manifest.json; do
+            base=$(jq -r '.version' "$f")
+            jq --arg v "${base}.${{ github.run_number }}" '.version = $v' "$f" > "$f.new"
+            mv "$f.new" "$f"
+          done
+
       - name: Sign themes via AMO
         env:
           AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
