@@ -22,8 +22,8 @@ binary) and the **profile** (`about:support` → "Profile Folder").
 4. Restart Firefox.
 
 To also install a theme, copy its signed `.xpi` (from this repo's
-[Releases](https://github.com/CustomFF/tweaks/releases) — `assets/themes/`
-if building locally) into `<profile>/extensions/<id>.xpi`:
+[Releases](https://github.com/CustomFF/tweaks/releases) — `build/signed/`
+if building locally, see "Developing" below) into `<profile>/extensions/<id>.xpi`:
 `myfox-dark-theme@daydve.github.io.xpi` or `myfox-light-theme@daydve.github.io.xpi`.
 
 To remove everything: delete `<profile>/.myfox` and `<profile>/chrome/`,
@@ -36,7 +36,7 @@ restart.
 | `autoconfig/` | Privileged JS (`myfox.cfg` + `myfox/*.js`) — prefs, sidebar panels, theme activation. Firefox's Autoconfig mechanism. |
 | `chrome/` | CSS (`userChrome.css` + `agent/`/`user/`) — the actual visual tweaks. |
 | `themes/` | Source for the two bundled theme add-ons (see `themes/README.md`). |
-| `assets/` | Built theme `.xpi`s and misc assets the installer bundles. |
+| `assets/` | Misc assets the installer bundles (not theme `.xpi`s — those come from Releases, see above). |
 | `scripts/` | `build-themes.sh`/`sign-themes.sh` (AMO signing — see below), `firefox_rdp_proxy.py` (dev tool, see below). |
 
 ## Developing

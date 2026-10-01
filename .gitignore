@@ -7,3 +7,4 @@ themes/*/.amo-upload-uuid
 *.swp
 *~
 .DS_Store
+assets/themes/*.xpi
