@@ -1,0 +1,9 @@
+# === theme build/sign artefacts ===
+.amo-api-key
+build/
+themes/*/.amo-upload-uuid
+
+# === editor / OS ===
+*.swp
+*~
+.DS_Store
