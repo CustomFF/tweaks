@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "MyFox Dark",
     "author": "MyFox",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "browser_specific_settings": {
         "gecko": {
             "id": "myfox-dark-theme@daydve.github.io"
