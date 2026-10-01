@@ -10,6 +10,8 @@ on:
 jobs:
   sign-and-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # GITHUB_TOKEN defaults to read-only; release creation needs write
     steps:
       - uses: actions/checkout@v4
 
