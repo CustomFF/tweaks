@@ -1,0 +1,35 @@
+name: Build and sign themes
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [master]
+    paths:
+      - "themes/**"
+      - "scripts/sign-themes.sh"
+      - "scripts/build-themes.sh"
+
+jobs:
+  sign-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sign themes via AMO
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: ./scripts/sign-themes.sh
+
+      - name: Release the signed XPIs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="themes-$(date -u +%Y%m%d%H%M%S)"
+          gh release create "$tag" build/signed/*.xpi \
+            --title "Signed themes ($tag)" \
+            --notes "Built from $(git rev-parse --short HEAD) by this workflow — see themes/*/manifest.json for version info."
