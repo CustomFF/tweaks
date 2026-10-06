@@ -47,4 +47,5 @@ jobs:
           tag="themes-$(date -u +%Y%m%d%H%M%S)"
           gh release create "$tag" build/signed/*.xpi \
             --title "Signed themes ($tag)" \
-            --notes "Built from $(git rev-parse --short HEAD) by this workflow — see themes/*/manifest.json for version info."
+            --notes "Built from $(git rev-parse --short HEAD) by this workflow — see themes/*/manifest.json for version info." \
+            --latest=false

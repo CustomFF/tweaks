@@ -1,0 +1,71 @@
+name: Release tweaks
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and upload the assets to this run only; don't create a release"
+        type: boolean
+        default: true
+      tag:
+        description: "Version to release (<beta major>.<patch>); required unless dry_run"
+        type: string
+        default: ""
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # GITHUB_TOKEN defaults to read-only; release creation needs write
+    env:
+      TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+      RELEASE: ${{ github.event_name == 'push' || !inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the version
+        run: |
+          if [[ -z "$TAG" ]]; then
+            if [[ "$RELEASE" == "true" ]]; then
+              echo "::error::a release needs a tag (set the 'tag' input)"
+              exit 1
+            fi
+            exit 0
+          fi
+          if ! [[ "$TAG" =~ ^[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::tag $TAG is not <major>.<patch>"
+            exit 1
+          fi
+          python3 scripts/changelog_to_json.py --check "$TAG"
+          # Tweaks are tested on beta, so another major is most likely a typo
+          # — but releasing off-beta is sometimes needed, so only warn.
+          if beta=$(python3 scripts/changelog_to_json.py --beta-major); then
+            if [[ "${TAG%%.*}" != "$beta" ]]; then
+              echo "::warning::tag $TAG doesn't match the current Firefox beta major ($beta)"
+            fi
+          else
+            echo "::warning::couldn't check the tag against the current Firefox beta"
+          fi
+
+      - name: Build the assets
+        run: ./scripts/build-tweaks-dist.sh build/dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: myfox-tweaks
+          path: build/dist/
+
+      - name: Create the release
+        if: env.RELEASE == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/changelog_to_json.py --notes "$TAG" > build/notes.md
+          gh release create "$TAG" build/dist/myfox-tweaks.tar.gz build/dist/changelog.json \
+            --title "Tweaks $TAG" \
+            --notes-file build/notes.md \
+            --target "$GITHUB_SHA" \
+            --latest

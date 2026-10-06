@@ -54,3 +54,26 @@ signed `.xpi`s as a GitHub Release.
 
 `scripts/firefox_rdp_proxy.py` lets you hot-reload CSS/JS changes against a
 running Firefox without restarting it — see its own `--help`.
+
+## Releases
+
+The tweaks are released separately from the themes, with tags
+`<Firefox beta major>.<patch>` (e.g. `158.0`). Each release has two files:
+
+- `myfox-tweaks.tar.gz`: `autoconfig/` and `chrome/` at the archive root
+- `changelog.json`: every released version from `CHANGELOG.md`, newest first
+
+MyFox relies on this layout. Change it only together with MyFox.
+
+To release a version:
+
+1. Run `scripts/changelog_to_json.py --next` to get the next version number.
+2. Add a `## <version> — <YYYY-MM-DD>` section to the top of `CHANGELOG.md`,
+   with user-facing lines in English, and commit it.
+3. `git tag <version> && git push origin <version>`.
+
+The `.github/workflows/tweaks.yml` workflow fails if `CHANGELOG.md` has no
+section for the tag. It warns if the tag's major isn't the current Firefox
+beta. Then it builds the files (`scripts/build-tweaks-dist.sh`) and creates
+the release. To test it without releasing, run it manually with `dry_run`;
+the files are attached to the run instead.
