@@ -3,7 +3,7 @@
 # (default out-dir: build/dist):
 #   myfox-tweaks.tar.gz  autoconfig/ and chrome/ at the archive root
 #   changelog.json       CHANGELOG.md, all released versions (validated)
-# The layout is a contract with MyFox — see docs/plan-releases-changelog.md.
+# The layout is a contract with MyFox: change it only together with MyFox.
 set -eo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."

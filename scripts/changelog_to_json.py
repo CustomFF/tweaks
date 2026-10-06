@@ -12,8 +12,13 @@ Usage:
     changelog_to_json.py --beta-major    print the current Firefox beta major
 
 Every mode validates the whole file first. --changelog PATH reads another
-file (for testing). The CHANGELOG.md format and the changelog.json contract
-are described in docs/plan-releases-changelog.md.
+file (for testing).
+
+CHANGELOG.md: sections '## <major>.<patch> — <YYYY-MM-DD>', newest first,
+each holding only '- ' items; an optional '## Unreleased' goes on top and is
+left out of the JSON. changelog.json is {"versions": [{"version", "date",
+"changes": [...]}]}, newest first. MyFox reads it, so change the format
+only together with MyFox.
 """
 import argparse
 import datetime
