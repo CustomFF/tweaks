@@ -17,7 +17,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Give each theme a version AMO has never seen
         # AMO rejects resubmitting a version number it already has, and
