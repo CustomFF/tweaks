@@ -24,7 +24,7 @@ jobs:
       TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
       RELEASE: ${{ github.event_name == 'push' || !inputs.dry_run }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check the version
         run: |
@@ -53,7 +53,7 @@ jobs:
       - name: Build the assets
         run: ./scripts/build-tweaks-dist.sh build/dist
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: myfox-tweaks
           path: build/dist/
