@@ -198,7 +198,7 @@ moz-visual-picker-item {
 
 /* New-tab page: one radius for the search field (Nova makes it a pill), less
    air around it, a small square "add shortcut" button (slightly translucent
-   until hovered) and a round "personalize" one. */
+   until hovered), and square "..." and "personalize" buttons. */
 @-moz-document url-prefix("about:") {
     .search-wrapper .search-inner-wrapper {
         height: 40px !important;
@@ -220,8 +220,17 @@ moz-visual-picker-item {
     button.search-handoff-button {
         background-position: 5px center !important;
     }
+    /* The pencil: square, and 24px tall like it is wide (the 26px text-button
+       height in 35-controls.css stretched it into an oval). */
     .open-customization-button {
-        --button-border-radius: 9999px !important;
+        --button-border-radius: var(--myfox-radius) !important;
+        --button-min-height: 24px !important;
+    }
+    /* "..." on the shortcut tiles and story cards: a circle-radius token,
+       which the page also uses for real circles (dots, progress), so it is
+       not remapped with the rest of the radius scale. */
+    .context-menu-button {
+        border-radius: var(--myfox-radius) !important;
     }
     .add-button {
         --button-border-radius: var(--myfox-radius) !important;
