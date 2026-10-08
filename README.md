@@ -26,6 +26,11 @@ To also install a theme, copy its signed `.xpi` (from this repo's
 if building locally, see "Developing" below) into `<profile>/extensions/<id>.xpi`:
 `myfox-dark-theme@daydve.github.io.xpi` or `myfox-light-theme@daydve.github.io.xpi`.
 
+Firefox reads these files only at startup. With the tweaks active,
+`firefox --myfox-restart` asks the Firefox already running that profile to
+restart the way about:profiles' "Restart" does, restoring the open tabs; if
+Firefox isn't running, it just starts as usual.
+
 To remove everything: delete `<profile>/.myfox` and `<profile>/chrome/`,
 restart.
 

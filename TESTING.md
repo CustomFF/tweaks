@@ -42,6 +42,20 @@ grep -rn 'url(' chrome/user chrome/agent | grep -v 'chrome://\|data:'   # relati
       content-process pages (about:newtab, about:preferences) don't pick up
       a live agent-sheet re-registration, only a fresh start
 
+## Restart hook (`--myfox-restart`)
+
+Run against a throwaway profile only: remoting finds the running instance
+by profile path, so make sure no real Firefox shares it.
+
+- [ ] Firefox running with a few tabs, `firefox --myfox-restart` (same
+      install, same profile): the main process exits, a new one starts, the
+      tabs come back, and no extra window or tab opens
+- [ ] Firefox not running, `firefox --myfox-restart`: a normal start, no
+      second restart, no "unrecognized command line flag" in the Browser
+      Console
+- [ ] a URL, `--new-window <url>`, `--private-window` sent to a running
+      Firefox still open as before
+
 ## A foreign profile stays untouched
 
 Create a second profile in the same Firefox install, without applying any
