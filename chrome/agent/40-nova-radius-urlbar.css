@@ -62,9 +62,9 @@ panel[type="arrow"] {
     /* Boxes inside the bar (icon hover backgrounds, permission icons, the
        zoom and search-mode chips): Firefox derives their radius from the
        dropdown's minus its padding, which goes negative (square corners)
-       with our radius. They sit 2px inside the bar, so 2px less keeps
-       their corners concentric with its. */
-    --urlbar-inner-border-radius: calc(var(--myfox-radius) - 2px) !important;
+       with our radius. Slightly less than the bar's own, since they sit
+       inside it. */
+    --urlbar-inner-border-radius: calc(var(--myfox-radius) - 1px) !important;
 }
 /* The "Switch to tab" pill is taller than the compact row's content box, so
    the row clipped its bottom edge. Trim the pill's vertical padding. */
@@ -93,7 +93,8 @@ panel[type="arrow"] {
    urlbar pill, clipping awkwardly against the curve. */
 #identity-icon-box,
 #identity-permission-box {
-    border-radius: var(--myfox-radius) !important;
+    /* The radius of the other boxes inside the bar (#urlbar above). */
+    border-radius: var(--urlbar-inner-border-radius) !important;
     margin-inline-start: var(--myfox-radius) !important;
     /* Inset from the bar's top/bottom border so it sits inside the field
        instead of running over the edge (obvious on a light theme). */
@@ -102,13 +103,21 @@ panel[type="arrow"] {
 
 /* Search-engine mode switcher ("G ⌄" before the typed text) — a moz-button
    whose --button-border-radius gets locally redefined to 99px by the urlbar
-   itself, so the global :root override above doesn't reach it. It sits
-   2px inside the 26px bar, so it is 22px tall, not the 26px other text
-   buttons get (35-controls.css): that background stuck out of the bar.
-   Same concentric radius as the other boxes in the bar. */
+   itself, so the global :root override above doesn't reach it. Drawn as the
+   same chip as the "Firefox" identity badge above: its height, inset, radius
+   and translucent fill (it is a "muted" button, otherwise an opaque gray).
+   Without the height it also took the 26px of the other text buttons
+   (35-controls.css) and stuck out of the bar. */
 moz-button.searchmode-switcher {
     --button-border-radius: var(--urlbar-inner-border-radius) !important;
-    --button-min-height: 22px !important;
+    --button-min-height: 18px !important;
+    --button-background-color-muted: var(--urlbar-box-background-color) !important;
+    --button-background-color-muted-hover: var(--urlbar-box-background-color-hover) !important;
+    --button-background-color-muted-active: var(--urlbar-box-background-color-active) !important;
+    height: 18px !important;
+    align-self: center !important;
+    /* Lines its left edge up with the identity badge's. */
+    margin-inline-start: 3px !important;
 }
 
 /* The engine-picker dropdown itself (and any other <panel-list>: the urlbar
