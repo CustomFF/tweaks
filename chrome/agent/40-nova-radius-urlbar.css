@@ -59,6 +59,12 @@ panel[type="arrow"] {
     --urlbarView-margin-inline: 0px !important;
     --urlbarview-row-padding-block: 0.2rem !important;
     --urlbarview-row-min-height: 26px !important;
+    /* Boxes inside the bar (icon hover backgrounds, permission icons, the
+       zoom and search-mode chips): Firefox derives their radius from the
+       dropdown's minus its padding, which goes negative (square corners)
+       with our radius. They sit 2px inside the bar, so 2px less keeps
+       their corners concentric with its. */
+    --urlbar-inner-border-radius: calc(var(--myfox-radius) - 2px) !important;
 }
 /* The "Switch to tab" pill is taller than the compact row's content box, so
    the row clipped its bottom edge. Trim the pill's vertical padding. */
@@ -98,9 +104,10 @@ panel[type="arrow"] {
    whose --button-border-radius gets locally redefined to 99px by the urlbar
    itself, so the global :root override above doesn't reach it. It sits
    2px inside the 26px bar, so it is 22px tall, not the 26px other text
-   buttons get (35-controls.css): that background stuck out of the bar. */
+   buttons get (35-controls.css): that background stuck out of the bar.
+   Same concentric radius as the other boxes in the bar. */
 moz-button.searchmode-switcher {
-    --button-border-radius: var(--myfox-radius) !important;
+    --button-border-radius: var(--urlbar-inner-border-radius) !important;
     --button-min-height: 22px !important;
 }
 
@@ -161,4 +168,18 @@ toolbarseparator.proton-zap::before {
     --border-radius-large: var(--myfox-radius) !important;
     --border-radius-xlarge: var(--myfox-radius) !important;
     --panel-border-radius: var(--myfox-radius) !important;
+}
+
+/* Find bar (Ctrl+F): a 28px pill field and round previous/next buttons.
+   Same field height and quiet border as the other fields (35-controls.css). */
+.findbar-textbox {
+    border-radius: var(--myfox-radius) !important;
+    min-height: 26px !important;
+}
+.findbar-textbox:not(:focus) {
+    border-color: var(--myfox-line-color) !important;
+}
+.findbar-find-previous,
+.findbar-find-next {
+    border-radius: var(--myfox-radius) !important;
 }

@@ -19,6 +19,11 @@
     .tab-close-button {
         padding: 3px !important;
     }
+    /* The find bar stretches its close button to the bar's height, which
+       turned the circle into an oval. */
+    .findbar-closebutton {
+        align-self: center !important;
+    }
     moz-button[iconsrc*="close"] {
         --button-border-radius: 50% !important;
         /* Close buttons are transparent until hovered, whatever type the
