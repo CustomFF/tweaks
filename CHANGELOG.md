@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 158.1 — 2026-10-08
 
 - After a tweaks update MyFox can restart a running Firefox to apply it, with the open tabs restored
 
