@@ -36,26 +36,8 @@
     max-height: none !important;
 }
 
-#urlbar .urlbar-background,
-#urlbar .urlbar-input-container {
-    border-radius: 13px !important;
-}
-
-#urlbar[open] .urlbar-background,
-#urlbar[open] .urlbar-input-container {
-    border-radius: 13px 13px 0px 0px !important;
-}
-
 #urlbar:not([open]) .urlbar-background {
     min-height: 26px !important;
-}
-
-#urlbar .urlbar-icon {
-    border-radius: 99px !important;
-}
-
-.searchmode-switcher {
-    --button-border-radius: 99px !important;
 }
 
 #nav-bar-customization-target> :not(#urlbar-container) {
