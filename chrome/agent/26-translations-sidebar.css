@@ -87,7 +87,7 @@
             grid-row: 4 !important;
         }
         #about-translations-source-section:focus-within {
-            outline: 1.5px solid color-mix(in srgb, light-dark(#0a84ff, #4dabff) 50%, transparent) !important;
+            outline: var(--myfox-focus-border) !important;
             outline-offset: -1.5px !important;
         }
     }

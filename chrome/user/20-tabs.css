@@ -6,8 +6,8 @@
 /* Tab corner shape */
 
 #tabbrowser-tabs {
-    --user-tab-rounding: calc(var(--myfox-radius, 5px) * 2);
-    --user-tab-ear-rounding: calc(var(--myfox-radius, 5px) * 2);
+    --user-tab-rounding: calc(var(--myfox-radius) * 2);
+    --user-tab-ear-rounding: calc(var(--myfox-radius) * 2);
 }
 
 /* "New tab" button: a small round button instead of a rounded square; the

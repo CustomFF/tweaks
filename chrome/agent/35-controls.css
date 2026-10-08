@@ -26,7 +26,7 @@
         --button-border-color-ghost: transparent !important;
 
         /* Text fields: the same quiet border the sidebar search boxes have. */
-        --input-text-border-color: color-mix(in srgb, currentColor 50%, transparent) !important;
+        --input-text-border-color: var(--myfox-line-color) !important;
     }
 
     /* One height for text buttons, fields and selects (icon buttons keep
@@ -51,7 +51,7 @@
     moz-input-text:focus-within,
     moz-input-password:focus-within,
     moz-select:focus-within {
-        --input-text-border: 1.5px solid color-mix(in srgb, light-dark(#0a84ff, #4dabff) 50%, transparent) !important;
+        --input-text-border: var(--myfox-focus-border) !important;
         --focus-outline: none !important;
     }
 
@@ -60,6 +60,6 @@
     moz-toggle {
         --toggle-width: 32px !important;
         --toggle-height: 16px !important;
-        --toggle-border-radius: var(--myfox-radius, 5px) !important;
+        --toggle-border-radius: var(--myfox-radius) !important;
     }
 }

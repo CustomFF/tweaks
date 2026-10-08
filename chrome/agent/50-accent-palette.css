@@ -32,8 +32,8 @@
     --color-violet-desaturated-80: #1d2f44 !important;
     --color-violet-desaturated-90: #0e1d30 !important;
 
-    --color-accent-primary: light-dark(#0a84ff, #4dabff) !important;
+    --color-accent-primary: var(--myfox-accent) !important;
     --color-accent-primary-hover: light-dark(#0074e8, #7cc4ff) !important;
     --color-accent-primary-active: light-dark(#0060c7, #a8d9ff) !important;
-    --color-accent-primary-selected: light-dark(#0a84ff, #4dabff) !important;
+    --color-accent-primary-selected: var(--myfox-accent) !important;
 }

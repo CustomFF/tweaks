@@ -1,0 +1,24 @@
+/* Design tokens: the one place for the values the other sheets share.
+   Agent sheet (registered by myfox.cfg) on every document's root, so both the
+   agent sheets and ../user/*.css can read them. Load order is by file name. */
+
+:root {
+    /* The one corner radius for panels, cards, buttons, fields, the address bar. */
+    --myfox-radius: 5px;
+
+    /* Accent (links, default buttons, focus); replaces Nova's violet. */
+    --myfox-accent: light-dark(#0a84ff, #4dabff);
+
+    /* Focus: a plain half-transparent accent border instead of a glowing ring. */
+    --myfox-focus-color: color-mix(in srgb, var(--myfox-accent) 50%, transparent);
+    --myfox-focus-border: 1.5px solid var(--myfox-focus-color);
+
+    /* Quiet lines: field borders, the dotted selection outline. */
+    --myfox-line-color: color-mix(in srgb, currentColor 50%, transparent);
+
+    /* Text size of menus, panels, sidebars and the browser's own pages. */
+    --myfox-font-size: 12px;
+
+    /* Shadow of floating surfaces: the address-bar dropdown, previews, cards. */
+    --myfox-shadow: 3px 6px 8px rgba(0, 0, 0, 0.3);
+}

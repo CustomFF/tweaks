@@ -8,17 +8,17 @@ panel :is(button.footer-button, button.panel-button) {
     box-sizing: border-box !important;
     height: 26px !important;
     min-height: 26px !important;
-    border-radius: var(--myfox-radius, 5px) !important;
+    border-radius: var(--myfox-radius) !important;
 }
 
 /* Fields: a quiet border, no glow when focused. */
 #editBookmarkPanel :is(input, menulist) {
-    border: 1px solid color-mix(in srgb, currentColor 50%, transparent) !important;
+    border: 1px solid var(--myfox-line-color) !important;
     outline: none !important;
     box-shadow: none !important;
 }
 #editBookmarkPanel :is(input:focus, menulist:focus, menulist[open], menulist[focused]) {
-    border: 1.5px solid color-mix(in srgb, light-dark(#0a84ff, #4dabff) 50%, transparent) !important;
+    border: var(--myfox-focus-border) !important;
     outline: none !important;
     box-shadow: none !important;
 }

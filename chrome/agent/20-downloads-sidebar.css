@@ -24,7 +24,7 @@
     margin: 0 !important;
 }
 .downloads-sidebar-title-row h4 {
-    font-size: 12px !important;             /* Matches standard h4 size */
+    font-size: var(--myfox-font-size) !important;             /* Matches standard h4 size */
     font-weight: 700 !important;            /* Matches standard h4 weight (bold) */
     color: var(--sidebar-text-color, currentColor) !important;
     margin: 0 !important;
@@ -68,7 +68,7 @@
 /* Compact downloads list for sidebar */
 #contentAreaDownloadsView {
     padding: 4px !important;                 /* Matches Bookmarks root padding of 4px on all sides */
-    font-size: 12px !important;
+    font-size: var(--myfox-font-size) !important;
     background-color: transparent !important; /* Blends into sidebar background */
     display: flex !important;
     flex-direction: column !important;
@@ -101,7 +101,7 @@ richlistitem.download:hover {
 /* Neutral selected/focused state: matching bookmarks selection (dotted outline, very light background) */
 richlistitem.download[selected="true"] {
     background-color: rgba(255, 255, 255, 0.05) !important;
-    outline: 1px dotted color-mix(in srgb, currentColor 50%, transparent) !important;
+    outline: 1px dotted var(--myfox-line-color) !important;
     outline-offset: -1px !important;
 }
 
@@ -222,7 +222,7 @@ richlistitem.download:focus-visible {
     /* This document resolves the field colors differently than the other
        sidebar panels; use the same ones. */
     --input-text-background-color: Field !important;
-    --input-text-border-color: color-mix(in srgb, currentColor 50%, transparent) !important;
+    --input-text-border-color: var(--myfox-line-color) !important;
     --input-text-color: FieldText !important;
 }
 
@@ -245,7 +245,7 @@ richlistitem.download:focus-visible {
     padding: 0 12px !important;
     border-radius: var(--myfox-radius) !important;
     cursor: pointer !important;
-    font-size: 12px !important;
+    font-size: var(--myfox-font-size) !important;
     font-weight: 600 !important;
     width: 100% !important;
     text-align: center !important;

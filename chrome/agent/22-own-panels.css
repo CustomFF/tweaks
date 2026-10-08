@@ -40,7 +40,7 @@
     .myfox-panel-title-row h4 {
         flex: 1 !important;
         margin: 0 !important;
-        font-size: 12px !important;
+        font-size: var(--myfox-font-size) !important;
         font-weight: 700 !important;
         line-height: 20px !important;
     }

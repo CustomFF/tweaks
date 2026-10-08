@@ -54,18 +54,18 @@ menupopup:not(.in-menulist)>menu {
 menupopup,
 panel,
 #customization-container {
-    --panel-border-radius: var(--myfox-radius, 5px) !important;
+    --panel-border-radius: var(--myfox-radius) !important;
     --menuitem-border-radius: 0px !important;
     --panel-menuitem-border-radius: 0px !important;
-    --border-radius-small: var(--myfox-radius, 5px) !important;
-    --border-radius-medium: var(--myfox-radius, 5px) !important;
-    --border-radius-large: var(--myfox-radius, 5px) !important;
-    --border-radius-xlarge: var(--myfox-radius, 5px) !important;
+    --border-radius-small: var(--myfox-radius) !important;
+    --border-radius-medium: var(--myfox-radius) !important;
+    --border-radius-large: var(--myfox-radius) !important;
+    --border-radius-xlarge: var(--myfox-radius) !important;
 }
 
 /* The add/edit-bookmark panel's fields and buttons. */
 #editBookmarkPanel :is(input, menulist, button) {
-    border-radius: var(--myfox-radius, 5px) !important;
+    border-radius: var(--myfox-radius) !important;
 }
 
 /* Tooltips: on GTK they are drawn natively (black, 80% opaque, the system's
@@ -76,7 +76,7 @@ tooltip {
     background-color: var(--arrowpanel-background, Menu) !important;
     color: var(--arrowpanel-color, MenuText) !important;
     border: 1px solid var(--arrowpanel-border-color, ThreeDShadow) !important;
-    border-radius: var(--myfox-radius, 5px) !important;
-    font-size: 12px !important;
+    border-radius: var(--myfox-radius) !important;
+    font-size: var(--myfox-font-size) !important;
     padding: 4px 8px !important;
 }

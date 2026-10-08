@@ -7,7 +7,7 @@
    agent-sheet button styles. The same rules in a user sheet lose. */
 #nav-bar {
     --toolbarbutton-padding-outer: 0px;
-    --toolbarbutton-border-radius: var(--myfox-radius, 5px);
+    --toolbarbutton-border-radius: var(--myfox-radius);
 }
 
 #nav-bar .toolbarbutton-1 {

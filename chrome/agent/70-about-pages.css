@@ -107,11 +107,11 @@ recommended-addon-card .addon-description {
     line-height: 18px !important;
 }
 :is(addon-card, recommended-addon-card) .addon-description {
-    font-size: 12px !important;
+    font-size: var(--myfox-font-size) !important;
     line-height: 16px !important;
 }
 .disco-cta-button {
-    font-size: 12px !important;
+    font-size: var(--myfox-font-size) !important;
 }
 /* Rating stars in the recommended list (16px by default). The component
    derives its star size from --icon-size on an inner element, so that is the
@@ -145,7 +145,7 @@ moz-select {
 @-moz-document url-prefix("about:"), url-prefix("chrome://") {
     :root:not([windowtype]):not([platform]):not(:has(> body.activity-stream)) {
         --font-size-root: 12px !important;
-        font-size: 12px !important;
+        font-size: var(--myfox-font-size) !important;
     }
 }
 

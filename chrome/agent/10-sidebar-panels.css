@@ -45,7 +45,7 @@ sidebar-panel-header .options-container {
 .sidebar-panel-heading,
 #sidebar-panel-header > h4,
 #sidebar-panel-header > html\:h4 {
-    font-size: 12px !important; /* set font size to 12px */
+    font-size: var(--myfox-font-size) !important;
     font-weight: bold !important;
     margin: 0px 0 !important;
     height: auto !important;
@@ -109,9 +109,9 @@ moz-input-search {
    focus color the built-in panels get from their own stylesheet. */
 #downloads-sidebar-search,
 #myfox-addons-search {
-    --toolbar-field-border-color-focus: color-mix(in srgb, light-dark(#0a84ff, #4dabff) 50%, transparent) !important;
+    --toolbar-field-border-color-focus: var(--myfox-focus-color) !important;
     --input-text-min-height: 26px !important;
-    --input-text-border-radius: var(--myfox-radius, 5px) !important;
+    --input-text-border-radius: var(--myfox-radius) !important;
     --focus-outline: none !important;
     --focus-outline-color: transparent !important;
     --focus-outline-width: 0px !important;
@@ -301,7 +301,7 @@ sidebar-tab-row:hover {
    (stock: menu font, 9px above and below every checkbox, 18px between groups). */
 @-moz-document url-prefix("chrome://") {
     .sidebar-panel:has(> .sidebar-panel-scrollable-content > .customize-group) {
-        font-size: 12px !important;
+        font-size: var(--myfox-font-size) !important;
     }
     .sidebar-panel-scrollable-content > .customize-group {
         margin-block-end: 0 !important;

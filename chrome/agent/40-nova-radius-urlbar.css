@@ -8,12 +8,10 @@
    `@media -moz-pref("browser.nova.enabled")` blocks in the shipped design-
    system CSS. We override the CSS custom properties directly (not the pref
    itself) so this survives Mozilla renaming/removing the experiment, and we
-   route every one of them through a single --myfox-radius variable so the
-   whole UI (panels, buttons, cards, inputs, the address bar) uses one
+   route every one of them through the single --myfox-radius (00-tokens.css)
+   so the whole UI (panels, buttons, cards, inputs, the address bar) uses one
    consistent corner radius instead of a dozen different pill shapes. */
 :root {
-    --myfox-radius: 5px;
-
     --button-border-radius: var(--myfox-radius) !important;
     --button-padding-inline: 10px !important;
     --button-padding-inline-small: 8px !important;
@@ -55,8 +53,8 @@ panel[type="arrow"] {
     --urlbar-background-overhang-open: 0px !important;
     --urlbarView-joint-background-outset-inline: 0px !important;
     --urlbarView-joint-background-outset-block: 0px !important;
-    --urlbar-background-box-shadow-open: 3px 6px 8px rgba(0, 0, 0, 0.3) !important;
-    --urlbar-background-box-shadow-breakout: 3px 6px 8px rgba(0, 0, 0, 0.3) !important;
+    --urlbar-background-box-shadow-open: var(--myfox-shadow) !important;
+    --urlbar-background-box-shadow-breakout: var(--myfox-shadow) !important;
     --urlbar-background-border-top-radius-open: var(--myfox-radius) !important;
     --urlbarView-margin-inline: 0px !important;
     --urlbarview-row-padding-block: 0.2rem !important;
@@ -120,7 +118,7 @@ panel-item {
 /* Same text size and row density as the context menu (about:addons' gear
    menu otherwise inherits the page's 14px and roomy 8px row padding). */
 panel-list {
-    font-size: 12px !important;
+    font-size: var(--myfox-font-size) !important;
 }
 
 /* The engine picker's XUL <panel> wrapper (not type="arrow", so the
