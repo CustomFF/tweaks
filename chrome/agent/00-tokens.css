@@ -6,12 +6,14 @@
     /* The one corner radius for panels, cards, buttons, fields, the address bar. */
     --myfox-radius: 5px;
 
-    /* Accent (links, default buttons, focus); replaces Nova's violet. */
+    /* Accent (links, default buttons); replaces Nova's violet. */
     --myfox-accent: light-dark(#0a84ff, #4dabff);
 
-    /* Focus: a plain half-transparent accent border instead of a glowing ring. */
-    --myfox-focus-color: color-mix(in srgb, var(--myfox-accent) 50%, transparent);
-    --myfox-focus-border: 1.5px solid var(--myfox-focus-color);
+    /* Focus: one thin accent border for focused fields, the address bar and
+       the keyboard focus ring alike. */
+    --myfox-focus-color: var(--myfox-accent);
+    --myfox-focus-width: 1.5px;
+    --myfox-focus-border: var(--myfox-focus-width) solid var(--myfox-focus-color);
 
     /* Quiet lines: field borders, the dotted selection outline. */
     --myfox-line-color: color-mix(in srgb, currentColor 50%, transparent);

@@ -27,6 +27,13 @@
 
         /* Text fields: the same quiet border the sidebar search boxes have. */
         --input-text-border-color: var(--myfox-line-color) !important;
+
+        /* Keyboard focus: one thin accent border everywhere instead of
+           Firefox's 2px ring (cyan under a theme). The address bar and the
+           find bar read the toolbar-field token. */
+        --focus-outline-color: var(--myfox-focus-color) !important;
+        --focus-outline-width: var(--myfox-focus-width) !important;
+        --toolbar-field-border-color-focus: var(--myfox-focus-color) !important;
     }
 
     /* One height for text buttons, fields and selects (icon buttons keep
@@ -47,7 +54,7 @@
         --select-border: 1px solid transparent !important;
     }
 
-    /* Focus: a plain accent border, not the design system's glowing ring. */
+    /* Focus: the same thin accent border, not the design system's glowing ring. */
     moz-input-text:focus-within,
     moz-input-password:focus-within,
     moz-select:focus-within {
