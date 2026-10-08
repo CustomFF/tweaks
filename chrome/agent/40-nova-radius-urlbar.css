@@ -96,9 +96,12 @@ panel[type="arrow"] {
 
 /* Search-engine mode switcher ("G ⌄" before the typed text) — a moz-button
    whose --button-border-radius gets locally redefined to 99px by the urlbar
-   itself, so the global :root override above doesn't reach it. */
+   itself, so the global :root override above doesn't reach it. It sits
+   2px inside the 26px bar, so it is 22px tall, not the 26px other text
+   buttons get (35-controls.css): that background stuck out of the bar. */
 moz-button.searchmode-switcher {
     --button-border-radius: var(--myfox-radius) !important;
+    --button-min-height: 22px !important;
 }
 
 /* The engine-picker dropdown itself (and any other <panel-list>: the urlbar
