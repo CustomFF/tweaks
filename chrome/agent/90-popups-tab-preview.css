@@ -1,4 +1,4 @@
-/* Popups: tab hover preview, identity/permissions panel.
+/* Popups: tab hover preview, identity/permissions panel, translations offer.
    Agent sheet (registered by myfox.cfg): reaches into shadow DOM and beats
    the documents' own styles. Load order is by file name. */
 
@@ -38,4 +38,32 @@
    the graphic info card inside it has its own hardcoded radius. */
 #trustpanel-graphic-section {
     border-radius: var(--myfox-radius) !important;
+}
+
+/* Translations offer panel (the urlbar's translate button, or shown on its
+   own on a foreign page): Firefox's 16px padding all round, 28px language
+   pickers and roomy label gaps. Tightened to the density of the other
+   panels, with fields as tall as ours (26px, 35-controls.css). */
+.translations-panel-header {
+    padding: 8px 8px 0 !important;
+}
+.translations-panel-content {
+    padding: 8px !important;
+}
+#full-page-translations-panel-intro {
+    line-height: 1.4 !important;
+    margin-block-end: 8px !important;
+}
+#full-page-translations-panel-lang-selection > label {
+    margin-block: 8px 4px !important;
+}
+#full-page-translations-panel-lang-selection > label:first-child {
+    margin-block-start: 0 !important;
+}
+.translations-panel menulist {
+    min-height: 26px !important;
+    padding-block: 0 !important;
+}
+.translations-panel-footer {
+    margin: 0 8px 8px !important;
 }
