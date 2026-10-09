@@ -153,6 +153,23 @@ panel-list {
     font-size: var(--myfox-font-size) !important;
 }
 
+/* The engine picker's list: items, heading and separators run its full
+   width, like the address bar's results, and the icons sit 5px in, right
+   under the engine icon in the chip that opens it. The text keeps its gap
+   after the icon. Set on the items too: panel-item redeclares some of
+   these on its own :host. */
+.searchmode-switcher-panel-list,
+.searchmode-switcher-panel-list > panel-item {
+    --panel-item-button-margin: 0 !important;
+    --panel-menuitem-padding-inline: 5px !important;
+    --panel-item-button-padding-inline-start: calc(5px + 16px) !important;
+    --panel-separator-padding: 4px 0 !important;
+}
+.searchmode-switcher-panel-description {
+    margin-inline: 0 !important;
+    padding-inline: 5px !important;
+}
+
 /* The engine picker's XUL <panel> wrapper (not type="arrow", so the
    panel[type="arrow"] rule above doesn't cover it) paints the outer
    surface and its corners. */
