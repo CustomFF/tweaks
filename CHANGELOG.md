@@ -8,6 +8,7 @@
 - Address bar suggestions and the search-engine menu run the full width of their dropdowns, the menu's icons lined up with the engine button
 - The translation offer panel is more compact
 - Container tabs are tinted with the container's color, fading from the outer edge, instead of a straight line across the rounded tab
+- Vertical tabs sit right against each other, with no gap between them
 - Tab previews cast a lighter shadow
 - The close button of the sync promo in the main menu stays inside the card
 - about:processes column headers no longer overlap the first row

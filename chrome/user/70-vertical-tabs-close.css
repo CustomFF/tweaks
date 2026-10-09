@@ -15,11 +15,10 @@
     margin-inline: 4px !important;
 }
 
-/* Tighter spacing between the tab cards: Firefox pads each vertical tab
-   3px above / 2px below and our card adds a 1px top margin, leaving a 6px
-   gutter; keep just 2px. */
+/* No gap between the tab cards: Firefox pads each vertical tab 3px above /
+   2px below and our card adds a 1px top margin, a 6px gutter in all. */
 #tabbrowser-tabs[orient="vertical"] .tabbrowser-tab {
-    padding-block: 1px !important;
+    padding-block: 0 !important;
 }
 #tabbrowser-tabs[orient="vertical"] .tab-background {
     margin-block: 0 !important;
