@@ -6,6 +6,7 @@
 - The selected tab's shadow on light themes is tighter
 - Hovering the first tab no longer draws its corner over a selected second tab
 - A tab under the pointer shows more clearly on light themes
+- The navigation bar casts a soft shadow onto the tabs behind it
 
 ## 158.2 — 2026-10-09
 

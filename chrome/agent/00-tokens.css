@@ -43,6 +43,9 @@
     /* A tab in the background under the pointer: this much of the text
        color over the selected tab's color. */
     --myfox-tab-hover: 17%;
+    /* The navigation bar casting a soft shadow up onto the tab strip, under
+       the tabs in the background (the selected tab covers it). */
+    --myfox-strip-shadow: inset 0 -3px 4px -4px rgba(0, 0, 0, 0.25);
 }
 
 /* On a light theme the faint container tint is lost on the near-white

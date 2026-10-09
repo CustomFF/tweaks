@@ -127,3 +127,10 @@
     z-index: 3 !important;
     position: relative !important;
 }
+
+/* The navigation bar casts a soft shadow up onto the tab strip: drawn along
+   the strip's bottom edge, under the tabs, so the tabs in the background show
+   it and the selected tab, joined to the bar, covers it. */
+#TabsToolbar {
+    box-shadow: var(--myfox-strip-shadow) !important;
+}
