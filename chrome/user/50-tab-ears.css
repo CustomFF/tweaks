@@ -2,17 +2,25 @@
    User sheet, imported by ../userChrome.css. */
 
 /* Rounded outer corners on selected/multiselected tabs */
-/* Lift the selected tab above its neighbors so the ears are visible */
-.tabbrowser-tab[selected],
-.tabbrowser-tab[multiselected] {
+/* Lift the selected tab above its neighbors so the ears are visible. Not
+   while it is being dragged ([dragtarget]): Firefox takes it out of the
+   strip then (position: absolute) and moves it; kept relative here, it left
+   its gap in place and flew off to the side. */
+.tabbrowser-tab[selected]:not([dragtarget]),
+.tabbrowser-tab[multiselected]:not([dragtarget]) {
     z-index: 2 !important;
     position: relative !important;
+}
+.tabbrowser-tab[selected],
+.tabbrowser-tab[multiselected] {
     overflow: visible !important;
 }
 
-.tabbrowser-tab:hover:not([selected]):not([multiselected]) {
+.tabbrowser-tab:hover:not([selected]):not([multiselected]):not([dragtarget]) {
     z-index: 1 !important;
     position: relative !important;
+}
+.tabbrowser-tab:hover:not([selected]):not([multiselected]) {
     overflow: visible !important;
 }
 
@@ -110,7 +118,9 @@
    so the ear has room to render inside the window. */
 #navigator-toolbox .tabbrowser-tab:first-child {
     margin-inline-start: var(--user-tab-ear-rounding) !important;
+    overflow: visible !important;
+}
+#navigator-toolbox .tabbrowser-tab:first-child:not([dragtarget]) {
     z-index: 3 !important;
     position: relative !important;
-    overflow: visible !important;
 }

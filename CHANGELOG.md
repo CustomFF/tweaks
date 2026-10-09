@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Tabs can be dragged again: a dragged tab no longer leaves its gap behind and flies off to the side
 - Keyboard focus is shown as the same thin accent border everywhere, the address bar included
 - The pills and circles left from Firefox's redesign are gone: the find bar, the new-tab page, about:config, about:translations, the window buttons, history rows and the badges in the address bar all use the same small corner radius
 - The search-engine button in the address bar matches the "Firefox" badge and no longer sticks out of the bar
