@@ -23,12 +23,14 @@
 #tab-preview-panel,
 #tab-note-preview-panel,
 #tabgroup-preview-panel {
-    --panel-box-shadow: var(--myfox-shadow) !important;
+    /* The lighter shadow: the full one read as too heavy right under the
+       pointer. */
+    --panel-box-shadow: var(--myfox-shadow-small) !important;
     /* The popup window is only as big as the panel plus this margin (4px by
        default), so a wide blur was clipped to a hard-edged gray rectangle.
-       Reserve room for the whole shadow (6px offset + 8px blur = 14px at
-       the bottom, 11px at the right, less elsewhere). */
-    --panel-box-shadow-margin: 14px !important;
+       Reserve room for the whole shadow (4px offset + 6px blur = 10px at
+       the bottom, 8px at the right, less elsewhere). */
+    --panel-box-shadow-margin: 10px !important;
     /* Same text size as the menus and tooltips (the system's is ~15px). */
     font-size: var(--myfox-font-size) !important;
 }
