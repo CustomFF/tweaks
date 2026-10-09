@@ -252,3 +252,14 @@ moz-visual-picker-item {
         opacity: 1 !important;
     }
 }
+
+/* about:config: its search field as tall as the other fields (26px, see
+   35-controls.css) instead of 28px. A parent-process page: it matches as its
+   chrome:// address, not as about:config. */
+@-moz-document url-prefix("about:"), url-prefix("chrome://") {
+    #about-config-search {
+        height: 26px !important;
+        min-height: 26px !important;
+        padding-block: 0 !important;
+    }
+}
