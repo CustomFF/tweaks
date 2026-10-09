@@ -4,7 +4,7 @@
 /* Card style for webpage viewport (all four corners rounded with a small margin) */
 :root:not([inDOMFullscreen]) .browserContainer {
     margin: 4px 4px 5px 4px !important;
-    border-radius: 8px !important;
+    border-radius: var(--myfox-card-radius) !important;
     overflow: clip !important;
 }
 
@@ -16,7 +16,7 @@
 #sidebar-box {
     margin: 4px 0 5px 4px !important;
     padding-block-end: 0 !important;
-    border-radius: 8px !important;
+    border-radius: var(--myfox-card-radius) !important;
     overflow: clip !important;
     /* A light theme gives the sidebar the same white as the window, so the
        card would vanish; there it is tinted a little darker. A dark theme's

@@ -5,6 +5,8 @@
 :root {
     /* The one corner radius for panels, cards, buttons, fields, the address bar. */
     --myfox-radius: 5px;
+    /* The page and sidebar cards: larger, as the outermost surfaces. */
+    --myfox-card-radius: 8px;
 
     /* Accent (links, default buttons); replaces Nova's violet. */
     --myfox-accent: light-dark(#0a84ff, #4dabff);
