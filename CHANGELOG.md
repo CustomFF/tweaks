@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 158.2 — 2026-10-09
 
 - Tabs can be dragged again: a dragged tab no longer leaves its gap behind and flies off to the side
 - Keyboard focus is shown as the same thin accent border everywhere, the address bar included
