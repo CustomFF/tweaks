@@ -20,6 +20,16 @@
     /* Quiet lines: field borders, the dotted selection outline. */
     --myfox-line-color: color-mix(in srgb, currentColor 50%, transparent);
 
+    /* Container tabs (../user/20-tabs.css): a line in the container color
+       along the tab's outer edge, this thick, and this strong on the
+       selected tab and on tabs in the background; the selected tab and the
+       window around it carry a faint tint of it. */
+    --myfox-container-line: 2px;
+    --myfox-container-line-blur: 1px;
+    --myfox-container-edge: 80%;
+    --myfox-container-inactive: 30%;
+    --myfox-container-join: 5%;
+
     /* Text size of menus, panels, sidebars and the browser's own pages. */
     --myfox-font-size: 12px;
 

@@ -8,7 +8,8 @@
    the tab column takes the frame color, as the tab strip has it, so the
    selected tab (toolbar color) still stands out. */
 :root:has(#tabbrowser-tabs[orient="vertical"]) :is(#nav-bar, #PersonalToolbar, #browser) {
-    background-color: var(--toolbar-background-color) !important;
+    /* With a container tab selected, its faint window tint (20-tabs.css). */
+    background-color: var(--myfox-window-tint-join, var(--toolbar-background-color)) !important;
     color: var(--toolbar-text-color) !important;
 }
 :root:has(#tabbrowser-tabs[orient="vertical"]) #sidebar-container {

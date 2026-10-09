@@ -35,31 +35,91 @@
     outline: unset !important;
 }
 
-/* Container tabs: instead of Firefox's straight 2px line, which ignores the
-   card's rounded corners (and reads as a separator between vertical tabs),
-   the card itself fades in from the container color at its outer edge
-   (the top of a horizontal tab, the column's outer side for a vertical one)
-   toward where a selected tab joins the window, gone two thirds of the way
-   across. Laid out over the border box
-   it is painted on: sized to the padding box it repeated into the bottom
-   border as a thin colored line. */
+/* Container tabs: instead of Firefox's straight 2px line, which ignored the
+   card's rounded corners (and read as a separator between vertical tabs),
+   a horizontal tab gets a line in the container color along its top that
+   follows the corners down (an inset shadow), and a vertical tab fades in
+   from the color at the column's outer side, gone two thirds of the way
+   across. Fainter on tabs in the background. Thickness and strengths:
+   ../agent/00-tokens.css. */
 .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background>.tab-context-line {
     display: none !important;
 }
 .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
-    --myfox-container-tint: color-mix(in srgb, var(--identity-tab-color) 35%, transparent);
-    background-image: linear-gradient(to bottom, var(--myfox-container-tint), transparent 67%) !important;
+    --myfox-container-line-color: color-mix(in srgb, var(--identity-tab-color) var(--myfox-container-inactive), transparent);
+}
+/* The shadow is shifted down 0.5px more than the line is thick and shrunk by
+   as much: shifted exactly, its edges coincided with the tab's sides at
+   fractional pixels and anti-aliasing left a hairline of color down them.
+   :root for weight: the light-theme shadow of the selected tab
+   (50-tab-ears.css) would replace it otherwise; that shadow is added below. */
+:root #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
+    box-shadow: inset 0 calc(var(--myfox-container-line) + 0.5px) var(--myfox-container-line-blur) -0.5px var(--myfox-container-line-color) !important;
+}
+@media (prefers-color-scheme: light) {
+    :root #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab[usercontextid][selected]>.tab-stack>.tab-background {
+        box-shadow: inset 0 calc(var(--myfox-container-line) + 0.5px) var(--myfox-container-line-blur) -0.5px var(--myfox-container-line-color), 0 0 8px 0 rgba(0, 0, 0, 0.5) !important;
+    }
+}
+/* Vertical: the gradient, laid out over the border box it is painted on
+   (sized to the padding box it repeated into the border as a thin line). */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
+    --myfox-container-direction: to right;
+    background-image: linear-gradient(var(--myfox-container-direction), var(--myfox-container-line-color), transparent 67%) !important;
     background-origin: border-box !important;
 }
-/* Fainter on the tabs in the background. */
-.tabbrowser-tab[usercontextid]:not([selected])>.tab-stack>.tab-background {
-    --myfox-container-tint: color-mix(in srgb, var(--identity-tab-color) 20%, transparent);
-}
-#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
-    background-image: linear-gradient(to right, var(--myfox-container-tint), transparent 67%) !important;
-}
 :root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
-    background-image: linear-gradient(to left, var(--myfox-container-tint), transparent 67%) !important;
+    --myfox-container-direction: to left;
+}
+
+/* A selected container tab tints the whole window: the tab itself and the
+   surfaces it joins (toolbars, the area around the page and sidebar cards)
+   carry a faint tint of its color, so the window shows which container it
+   is in. The tab strip / tab column and the cards stay as they are. The
+   colors are Firefox's (usercontext.css): the window can't read the tab's
+   own --identity-tab-color, so each is matched by its class. */
+:root:has(.tabbrowser-tab[selected].identity-color-blue) { --myfox-window-tint: #37adff; }
+:root:has(.tabbrowser-tab[selected].identity-color-cyan) { --myfox-window-tint: #00c79a; }
+:root:has(.tabbrowser-tab[selected].identity-color-green) { --myfox-window-tint: #51cd00; }
+:root:has(.tabbrowser-tab[selected].identity-color-yellow) { --myfox-window-tint: #ffcb00; }
+:root:has(.tabbrowser-tab[selected].identity-color-orange) { --myfox-window-tint: #ff9f00; }
+:root:has(.tabbrowser-tab[selected].identity-color-red) { --myfox-window-tint: #ff613d; }
+:root:has(.tabbrowser-tab[selected].identity-color-pink) { --myfox-window-tint: #ff4bda; }
+:root:has(.tabbrowser-tab[selected].identity-color-purple) { --myfox-window-tint: #af51f5; }
+:root:has(.tabbrowser-tab[selected].identity-color-violet) { --myfox-window-tint: #764edd; }
+:root:has(.tabbrowser-tab[selected].identity-color-gray) { --myfox-window-tint: currentColor; }
+:root:has(.tabbrowser-tab[selected][usercontextid]) {
+    --myfox-window-tint-join: color-mix(in srgb, var(--myfox-window-tint) var(--myfox-container-join), var(--toolbar-background-color));
+    --myfox-window-tint-edge: color-mix(in srgb, var(--myfox-window-tint) var(--myfox-container-edge), var(--toolbar-background-color));
+}
+:root:has(.tabbrowser-tab[selected][usercontextid]) :is(#nav-bar, #PersonalToolbar, #browser) {
+    background-color: var(--myfox-window-tint-join) !important;
+}
+/* The navigation bar's 1px top border, drawn in the plain toolbar color,
+   showed as a line between the tab and the tinted bar. */
+:root:has(.tabbrowser-tab[selected][usercontextid]) #nav-bar {
+    border-top-color: var(--myfox-window-tint-join) !important;
+}
+/* The selected tab (and its ears, which inherit its background) in the same
+   faint tint, its line at full strength. Its 1px inner outline is drawn in
+   the plain toolbar color, invisible on an untinted tab but a frame on this
+   one; it takes the tint too. */
+#tabbrowser-tabs .tabbrowser-tab[usercontextid][selected]>.tab-stack>.tab-background {
+    --myfox-container-line-color: var(--myfox-window-tint-edge);
+    background-color: var(--myfox-window-tint-join) !important;
+    outline-color: var(--myfox-window-tint-join) !important;
+}
+/* A selected vertical tab fades from that color to the faint tint a little
+   before its joining edge, where the ears and the window start (fading
+   right up to the edge left it brighter than the ears beside it). The ears
+   inherit the whole background and would repeat the gradient over their own
+   width, so they take only the tint. */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid][selected]>.tab-stack>.tab-background {
+    background-image: linear-gradient(var(--myfox-container-direction), var(--myfox-window-tint-edge), var(--myfox-window-tint-join) calc(100% - var(--user-tab-ear-rounding) - 2px)) !important;
+}
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid][selected]>.tab-stack>.tab-background::before,
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid][selected]>.tab-stack>.tab-background::after {
+    background-image: none !important;
 }
 
 /* Tab height: 30px (Firefox's compact density gives 28-29px). */
