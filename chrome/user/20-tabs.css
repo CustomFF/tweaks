@@ -122,6 +122,12 @@
     background-image: none !important;
 }
 
+/* No gap between horizontal tab cards: Firefox pads each tab 2px on both
+   sides. */
+#tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab {
+    padding-inline: 0 !important;
+}
+
 /* Tab height: 30px (Firefox's compact density gives 28-29px). */
 
 #TabsToolbar,

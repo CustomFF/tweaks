@@ -9,7 +9,7 @@
 - The translation offer panel is more compact
 - Container tabs: instead of a straight line across the rounded tab, a line in the container color follows the top of horizontal tabs round their corners, vertical tabs fade in from the color at their outer side, and a selected container tab tints the whole window
 - Vertical tabs are part of the window like horizontal ones: they run to the edge of their column, the selected one flows into the window with curved corners, and the column lines up with the page
-- Vertical tabs sit right against each other, with no gap between them
+- Tabs sit right against each other, with no gap between them
 - With the sidebar on the right, the page and the sidebar keep their margins
 - Switching to vertical tabs no longer turns the whole window the darker frame color
 - Tab previews cast a lighter shadow
