@@ -9,6 +9,7 @@
 - The translation offer panel is more compact
 - Tab previews cast a lighter shadow
 - The close button of the sync promo in the main menu stays inside the card
+- about:processes column headers no longer overlap the first row
 - The "..." button of an extension in the Extensions panel has rounded corners and sits closer to the edge
 - The "Add bookmarklets" bookmark follows the gallery to its new address
 - In a new profile, back, forward and reload sit around the address bar

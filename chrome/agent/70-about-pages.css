@@ -154,8 +154,13 @@ moz-select {
     tr.process > td.type > span {
         font-weight: normal !important;
     }
-    table:has(tr.process) :is(td, th) {
+    table:has(tr.process) td {
         padding-block: 2px !important;
+    }
+    /* The column headers are buttons as tall as the header row: padding
+       there pushed them 2px into the first row. */
+    table:has(tr.process) th {
+        padding-block: 0 !important;
     }
 }
 
