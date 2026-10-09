@@ -56,6 +56,19 @@
     border-inline-start: var(--border-width) solid var(--chrome-content-separator-color) !important;
 }
 
+/* The same with the sidebar on the right ("Move sidebar to the right"):
+   the sidebar card's margin and the page card's open edge swap sides, or
+   the page lost its margin at the window edge and the sidebar card sat
+   against the launcher/tab column with a double gap on the page side. */
+#sidebar-box[sidebar-positionend] {
+    margin: 4px 4px 5px 0 !important;
+}
+#sidebar-box[sidebar-positionend]:not([hidden]) ~ #tabbrowser-tabbox .browserContainer {
+    margin-inline: 4px 0 !important;
+    border-inline-start: none !important;
+    border-inline-end: var(--border-width) solid var(--chrome-content-separator-color) !important;
+}
+
 /* Make sidebar-button look pressed/active when sidebar is open */
 body:has(#sidebar-box:not([hidden])) #sidebar-button .toolbarbutton-badge-stack {
     background-color: var(--toolbarbutton-active-background, color-mix(in srgb, currentColor 25%, transparent)) !important;
