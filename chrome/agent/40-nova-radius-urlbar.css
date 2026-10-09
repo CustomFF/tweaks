@@ -181,6 +181,22 @@ toolbarseparator.proton-zap::before {
     --panel-border-radius: var(--myfox-radius) !important;
 }
 
+/* The rest of the browser window's pills: the window buttons' hover circles
+   (minimize/maximize/close), the private-browsing indicator, the
+   fullscreen/pointer-lock warning, and, inside the address bar, the
+   container indicator and the translations button's language badge. */
+@-moz-document url-prefix("chrome://") {
+    .titlebar-button > .toolbarbutton-icon,
+    .private-browsing-indicator-button,
+    .pointerlockfswarning {
+        border-radius: var(--myfox-radius) !important;
+    }
+    #userContext-icons,
+    #translations-button-locale {
+        border-radius: var(--urlbar-inner-border-radius) !important;
+    }
+}
+
 /* Find bar (Ctrl+F): a 28px pill field and round previous/next buttons.
    Same field height and quiet border as the other fields (35-controls.css). */
 .findbar-textbox {

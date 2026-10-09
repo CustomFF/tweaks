@@ -246,10 +246,11 @@ moz-card.date-card {
     --card-accordion-open-icon: url("chrome://global/skin/icons/arrow-down.svg") !important;
 }
 
-/* Firefox also gives the row a 9999px ("stadium") hover fill on top of
-   that — the same Nova pill treatment we square off everywhere else (see
-   the close-button and moz-card rules below/above). Drop it entirely. */
-sidebar-tab-row:hover {
+/* Firefox also gives the row a 9999px ("stadium") fill when hovered,
+   selected or focused — the same Nova pill treatment we square off
+   everywhere else (see the close-button and moz-card rules below/above).
+   Drop it entirely. */
+sidebar-tab-row {
     border-radius: 0 !important;
 }
 
