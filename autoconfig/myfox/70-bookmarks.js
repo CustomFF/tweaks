@@ -11,11 +11,11 @@
   // their bookmark GUID, kept in the prefs below (see 72-bookmark-roles.js),
   // so neither the title nor a later change of the gallery's address matters.
   // The bookmarklet gallery (ddblm) picks its language from ?lang=.
-  const GALLERY_URL = "https://daydve.github.io/ddblm/";
+  const GALLERY_URL = "https://customff.github.io/ddblm/";
   // Addresses the gallery had before GALLERY_URL: a bookmark still pointing at
-  // one of them is ours and is moved to the current address. Add the old
-  // address here whenever GALLERY_URL changes.
-  const GALLERY_LEGACY_URLS = [];
+  // one of them (with or without ?lang=) is ours and is moved to the current
+  // address. Add the old address here whenever GALLERY_URL changes.
+  const GALLERY_LEGACY_URLS = ["https://daydve.github.io/ddblm/"];
   const ROLE_PREFS = {
     advanced: "myfox.bookmark.advanced",
     gallery: "myfox.bookmark.gallery",
@@ -124,16 +124,26 @@
         let found = await pu.bookmarks.fetch({ url });
         if (found && found.parentGuid === "toolbar_____") {
           prefs.setStringPref(ROLE_PREFS[role], found.guid);
-          // A gallery bookmark left at a previous address follows the move.
-          if (role === "gallery" && GALLERY_LEGACY_URLS.includes(url)) {
-            await pu.bookmarks.update({ guid: found.guid, url: galleryUrlFor() });
-          }
           return;
         }
       }
     };
+    const legacyGalleryUrls = GALLERY_LEGACY_URLS.flatMap(url => [url, url + "?lang=ru"]);
     find("advanced", ["about:config"]).catch(() => {});
-    find("gallery", [galleryUrlFor(), GALLERY_URL, ...GALLERY_LEGACY_URLS]).catch(() => {});
+    find("gallery", [galleryUrlFor(), GALLERY_URL, ...legacyGalleryUrls])
+      .then(() => moveGalleryBookmark(pu))
+      .catch(() => {});
+  }
+  // A gallery bookmark left at a previous address follows the move. Runs on
+  // every start, since a profile that already knows its gallery bookmark is
+  // exactly the one still pointing at the old address.
+  async function moveGalleryBookmark(pu) {
+    let guid = prefs.getStringPref(ROLE_PREFS.gallery, "");
+    if (!guid) return;
+    let bookmark = await pu.bookmarks.fetch(guid);
+    if (bookmark && GALLERY_LEGACY_URLS.includes(bookmark.url.href.split("?")[0])) {
+      await pu.bookmarks.update({ guid, url: galleryUrlFor() });
+    }
   }
   function galleryUrlFor() {
     return MyFox.lang === "ru" ? GALLERY_URL + "?lang=ru" : GALLERY_URL;
