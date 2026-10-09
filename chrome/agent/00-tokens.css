@@ -38,3 +38,16 @@
     /* A lighter one for popups that sit right under the pointer (tab previews). */
     --myfox-shadow-small: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
+
+/* On a light theme the faint container tint is lost on the near-white
+   toolbars: stronger there. */
+@media (prefers-color-scheme: light) {
+    :root {
+        --myfox-container-join: 14%;
+        --myfox-container-edge: 100%;
+        --myfox-container-inactive: 50%;
+        /* A thin blurred line reads on a dark strip, not on a light one. */
+        --myfox-container-line: 3px;
+        --myfox-container-line-blur: 0px;
+    }
+}

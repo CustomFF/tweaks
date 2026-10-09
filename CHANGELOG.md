@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- On light themes the container colors show: a thicker, stronger line on container tabs and a stronger tint of the window
+
 ## 158.2 — 2026-10-09
 
 - Tabs can be dragged again: a dragged tab no longer leaves its gap behind and flies off to the side
