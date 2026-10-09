@@ -3,6 +3,7 @@
 ## Unreleased
 
 - On light themes the container colors show: a thicker, stronger line on container tabs and a stronger tint of the window
+- The selected tab's shadow on light themes is tighter
 
 ## 158.2 — 2026-10-09
 

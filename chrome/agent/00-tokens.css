@@ -37,6 +37,9 @@
     --myfox-shadow: 3px 6px 8px rgba(0, 0, 0, 0.3);
     /* A lighter one for popups that sit right under the pointer (tab previews). */
     --myfox-shadow-small: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    /* Around the selected tab on a light theme, setting it off the near-white
+       tab strip (../user/50-tab-ears.css). */
+    --myfox-tab-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 /* On a light theme the faint container tint is lost on the near-white
