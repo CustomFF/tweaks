@@ -36,6 +36,13 @@ panel[type="arrow"] {
     --menuitem-border-radius: 0px !important;
 }
 
+/* The "..." button on an extension in the Extensions panel draws its fill on
+   the icon with the row-highlight radius zeroed above; it is a button, not a
+   row, so it gets the shared radius. */
+.unified-extensions-item-menu-button > .toolbarbutton-icon {
+    border-radius: var(--myfox-radius) !important;
+}
+
 /* The address bar's own visual pill isn't driven purely by --urlbar-border-
    radius (its actual background element computes something else at
    runtime), so it needs a direct, targeted override too. */

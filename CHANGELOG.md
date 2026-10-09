@@ -8,6 +8,7 @@
 - Address bar suggestions and the search-engine menu run the full width of their dropdowns, the menu's icons lined up with the engine button
 - The translation offer panel is more compact
 - Tab previews cast a lighter shadow
+- The "..." button of an extension in the Extensions panel has rounded corners and sits closer to the edge
 - The "Add bookmarklets" bookmark follows the gallery to its new address
 - In a new profile, back, forward and reload sit around the address bar
 

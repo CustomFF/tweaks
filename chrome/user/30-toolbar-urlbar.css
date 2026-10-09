@@ -52,7 +52,7 @@
 #unified-extensions-view .unified-extensions-item {
     min-height: 24px !important;
     max-height: 28px !important;
-    padding: 1px 16px 1px 2px !important;
+    padding: 1px 4px 1px 2px !important;
     margin: 0 !important;
 }
 
@@ -101,8 +101,8 @@
 #unified-extensions-view .unified-extensions-item-menu-button {
     min-height: 16px !important;
     min-width: 16px !important;
-    max-height: 18px !important;
-    max-width: 18px !important;
+    max-height: 22px !important;
+    max-width: 22px !important;
     padding: 1px !important;
     margin: 0 !important;
     margin-inline-start: 4px !important;
@@ -110,11 +110,14 @@
     z-index: 100 !important;
 }
 
+/* Its fill is drawn on the icon: Firefox's 8px padding made it 30px, taller
+   than the row, which clipped off its rounded corners. */
 #unified-extensions-view .unified-extensions-item-menu-button .toolbarbutton-icon {
     width: 12px !important;
     height: 12px !important;
     min-width: 12px !important;
     min-height: 12px !important;
+    padding: 4px !important;
 }
 
 #unified-extensions-view #unified-extensions-area,
