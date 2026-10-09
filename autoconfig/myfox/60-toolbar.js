@@ -1,7 +1,35 @@
 // Toolbar: removes the import button, adds the bookmarks-toolbar toggle
-// button and keeps its checked state in sync.
+// button and keeps its checked state in sync, and lays out a new profile's
+// navigation bar.
 (function (MyFox) {
-  const { t, whenDelayedStartupDone } = MyFox;
+  const { prefs, t, oncePerProfile, whenDelayedStartupDone } = MyFox;
+
+  // A new profile gets our navigation-bar layout once; a profile whose layout
+  // Firefox has already saved keeps it (the user may have arranged it). Read
+  // now, before Firefox saves a layout for this start.
+  let arrangeNavBar = false;
+  oncePerProfile("myfox.navBarLayoutInitialized", () => {
+    arrangeNavBar = !prefs.prefHasUserValue("browser.uiCustomization.state");
+  });
+
+  // Back and forward right before the address bar, reload right after it, so
+  // Firefox's two springs center the group; no Home button. The other
+  // buttons stay where Firefox puts them.
+  function arrangeNavBarOnce(CustomizableUI) {
+    if (!arrangeNavBar) return;
+    arrangeNavBar = false;
+    const area = CustomizableUI.AREA_NAVBAR;
+    const indexOf = id => CustomizableUI.getWidgetIdsInArea(area).indexOf(id);
+    try {
+      if (indexOf("home-button") !== -1) CustomizableUI.removeWidgetFromArea("home-button");
+      for (let id of ["back-button", "forward-button"]) {
+        if (indexOf(id) !== -1) CustomizableUI.moveWidgetWithinArea(id, indexOf("urlbar-container"));
+      }
+      if (indexOf("stop-reload-button") !== -1) {
+        CustomizableUI.moveWidgetWithinArea("stop-reload-button", indexOf("urlbar-container") + 1);
+      }
+    } catch(e) {}
+  }
 
   function initWindow(win) {
     const doc = win.document;
@@ -87,6 +115,7 @@
                 );
               }
             } catch(e) {}
+            arrangeNavBarOnce(CustomizableUI);
           }
 
           whenDelayedStartupDone(win, ensurePlacement);
