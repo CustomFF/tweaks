@@ -120,7 +120,9 @@
     margin-inline-start: var(--user-tab-ear-rounding) !important;
     overflow: visible !important;
 }
-#navigator-toolbox .tabbrowser-tab:first-child:not([dragtarget]) {
+/* Above its neighbors only while it is the selected tab: a hovered first
+   tab, lifted this high too, laid its right ear over a selected second tab. */
+#navigator-toolbox .tabbrowser-tab:first-child:is([selected], [multiselected]):not([dragtarget]) {
     z-index: 3 !important;
     position: relative !important;
 }

@@ -4,6 +4,7 @@
 
 - On light themes the container colors show: a thicker, stronger line on container tabs and a stronger tint of the window
 - The selected tab's shadow on light themes is tighter
+- Hovering the first tab no longer draws its corner over a selected second tab
 
 ## 158.2 — 2026-10-09
 
