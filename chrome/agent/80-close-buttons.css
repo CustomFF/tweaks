@@ -19,6 +19,15 @@
     .tab-close-button {
         padding: 3px !important;
     }
+    /* The sync promo card in the main menu: Firefox enlarges its close
+       button's click area with an outer padding and a matching negative
+       margin, sized for the stock button. With the 20px circle below that
+       pushed the circle 10px out of the card. */
+    #appMenu-fxa-sign-in-promo-dismiss-button {
+        --button-outer-padding-inline: 0px !important;
+        --button-outer-padding-block: 0px !important;
+        align-self: center !important;
+    }
     /* The find bar stretches its close button to the bar's height, which
        turned the circle into an oval. */
     .findbar-closebutton {
@@ -37,7 +46,9 @@
         --button-border-color-primary: transparent !important;
         --button-border: none !important;
     }
-    /* Sidebar panel headers: a smaller circle than the 24px default. */
+    /* Sidebar panel headers: a smaller circle than the 24px default. The
+       -small tokens too: a size="small" button (the sync promo's close) sizes
+       its circle from those, which left a 24px circle in a 20px button. */
     moz-button[iconsrc$="close.svg"] {
         width: 20px !important;
         height: 20px !important;
@@ -45,6 +56,8 @@
         min-height: 20px !important;
         --button-size-icon: 20px !important;
         --button-min-height: 20px !important;
+        --button-size-icon-small: 20px !important;
+        --button-min-height-small: 20px !important;
         --icon-size: 12px !important;
     }
 }
