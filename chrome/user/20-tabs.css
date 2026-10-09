@@ -48,17 +48,21 @@
 .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
     --myfox-container-line-color: color-mix(in srgb, var(--identity-tab-color) var(--myfox-container-inactive), transparent);
 }
-/* The shadow is shifted down 0.5px more than the line is thick and shrunk by
-   as much: shifted exactly, its edges coincided with the tab's sides at
-   fractional pixels and anti-aliasing left a hairline of color down them.
+/* The shadow is shifted down 1.5px more than the line is thick and shrunk
+   by as much, so its blur stays off the tab's sides (it ran down them to
+   the ears). The tab's transparent 1px border and inner outline go: an
+   inset shadow is drawn inside the border, and the outline over it, which
+   held the line 1.5px in from the tab's edge.
    :root for weight: the light-theme shadow of the selected tab
    (50-tab-ears.css) would replace it otherwise; that shadow is added below. */
 :root #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
-    box-shadow: inset 0 calc(var(--myfox-container-line) + 0.5px) var(--myfox-container-line-blur) -0.5px var(--myfox-container-line-color) !important;
+    border-width: 0 !important;
+    outline: none !important;
+    box-shadow: inset 0 calc(var(--myfox-container-line) + 1.5px) var(--myfox-container-line-blur) -1.5px var(--myfox-container-line-color) !important;
 }
 @media (prefers-color-scheme: light) {
     :root #tabbrowser-tabs:not([orient="vertical"]) .tabbrowser-tab[usercontextid][selected]>.tab-stack>.tab-background {
-        box-shadow: inset 0 calc(var(--myfox-container-line) + 0.5px) var(--myfox-container-line-blur) -0.5px var(--myfox-container-line-color), 0 0 8px 0 rgba(0, 0, 0, 0.5) !important;
+        box-shadow: inset 0 calc(var(--myfox-container-line) + 1.5px) var(--myfox-container-line-blur) -1.5px var(--myfox-container-line-color), 0 0 8px 0 rgba(0, 0, 0, 0.5) !important;
     }
 }
 /* Vertical: the gradient, laid out over the border box it is painted on
