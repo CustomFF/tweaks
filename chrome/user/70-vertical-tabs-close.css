@@ -15,18 +15,80 @@
     background-color: var(--toolbox-background-color) !important;
 }
 
-/* Vertical Tabs Styling (matches Sidebery look: cards with rounded corners, no selected "ears", close button on hover only) */
+/* Vertical tabs are part of the window, like horizontal ones: each tab
+   runs to the page-side edge of the tab column, rounded and inset only on
+   its outer side, and the selected tab (toolbar color) flows into the
+   toolbar-colored area beyond that edge, with concave "ears" above and below
+   the join, as a horizontal tab flows into the navigation bar. The page side
+   is the inline end with the sidebar on the left, the start on the right. */
+#tabbrowser-tabs[orient="vertical"] {
+    --myfox-vtab-radius: 4px;
+    --myfox-vtab-ear: var(--user-tab-ear-rounding);
+}
+#tabbrowser-tabs[orient="vertical"] .tab-background {
+    border-radius: 0 !important;
+    border-start-start-radius: var(--myfox-vtab-radius) !important;
+    border-end-start-radius: var(--myfox-vtab-radius) !important;
+    margin-inline: 4px 0 !important;
+}
+:root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tab-background {
+    border-radius: 0 !important;
+    border-start-end-radius: var(--myfox-vtab-radius) !important;
+    border-end-end-radius: var(--myfox-vtab-radius) !important;
+    margin-inline: 0 4px !important;
+}
 
-/* Hide the curved "ears" on selected tabs when in vertical mode */
+/* The tab column lines up with the page card (same top and bottom margins,
+   ../user/60-cards.css) and rounds its page-side corners like it; its outer
+   side stays flush with the window edge. */
+:root:has(#tabbrowser-tabs[orient="vertical"]) #sidebar-container {
+    margin-block: 4px 5px !important;
+    border-start-end-radius: var(--myfox-card-radius) !important;
+    border-end-end-radius: var(--myfox-card-radius) !important;
+}
+:root:has(#tabbrowser-tabs[orient="vertical"]):has(#sidebar-container[sidebar-positionend]) #sidebar-container {
+    border-radius: 0 !important;
+    border-start-start-radius: var(--myfox-card-radius) !important;
+    border-end-start-radius: var(--myfox-card-radius) !important;
+}
+
+/* Ears: only the selected tab joins the area beyond the column. */
 #tabbrowser-tabs[orient="vertical"] .tab-background::before,
 #tabbrowser-tabs[orient="vertical"] .tab-background::after {
     display: none !important;
 }
-
-/* Style the tab backgrounds as neat cards with margins and rounded corners */
-#tabbrowser-tabs[orient="vertical"] .tab-background {
-    border-radius: 4px !important;
-    margin-inline: 4px !important;
+#tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::before,
+#tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    /* -1px: positioned inside the tab's 1px (transparent) border, it left a
+       hairline of the column between the ear and the column's edge. */
+    inset-inline-end: -1px !important;
+    width: var(--myfox-vtab-ear) !important;
+    height: var(--myfox-vtab-ear) !important;
+    pointer-events: none !important;
+    background: inherit !important;
+    background-image: none !important;
+}
+#tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::before {
+    top: calc(0px - var(--myfox-vtab-ear)) !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cmask id='m'%3E%3Crect width='1' height='1' fill='white'/%3E%3Ccircle cx='0' cy='0' r='1' fill='black'/%3E%3C/mask%3E%3Crect width='1' height='1' fill='white' mask='url(%23m)'/%3E%3C/svg%3E") center/100% 100% no-repeat !important;
+}
+#tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::after {
+    bottom: calc(0px - var(--myfox-vtab-ear)) !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cmask id='m'%3E%3Crect width='1' height='1' fill='white'/%3E%3Ccircle cx='0' cy='1' r='1' fill='black'/%3E%3C/mask%3E%3Crect width='1' height='1' fill='white' mask='url(%23m)'/%3E%3C/svg%3E") center/100% 100% no-repeat !important;
+}
+:root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::before,
+:root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::after {
+    inset-inline-end: auto !important;
+    inset-inline-start: -1px !important;
+}
+:root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::before {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cmask id='m'%3E%3Crect width='1' height='1' fill='white'/%3E%3Ccircle cx='1' cy='0' r='1' fill='black'/%3E%3C/mask%3E%3Crect width='1' height='1' fill='white' mask='url(%23m)'/%3E%3C/svg%3E") center/100% 100% no-repeat !important;
+}
+:root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tab-background:is([selected], [multiselected])::after {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cmask id='m'%3E%3Crect width='1' height='1' fill='white'/%3E%3Ccircle cx='1' cy='1' r='1' fill='black'/%3E%3C/mask%3E%3Crect width='1' height='1' fill='white' mask='url(%23m)'/%3E%3C/svg%3E") center/100% 100% no-repeat !important;
 }
 
 /* No gap between the tab cards: Firefox pads each vertical tab 3px above /

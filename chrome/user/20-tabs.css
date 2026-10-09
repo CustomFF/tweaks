@@ -37,9 +37,10 @@
 
 /* Container tabs: instead of Firefox's straight 2px line, which ignores the
    card's rounded corners (and reads as a separator between vertical tabs),
-   the card itself fades in from the container color at its outer edge:
-   the top for horizontal tabs, the edge facing the page for vertical ones,
-   and is gone by two thirds of the way across. Laid out over the border box
+   the card itself fades in from the container color at its outer edge
+   (the top of a horizontal tab, the column's outer side for a vertical one)
+   toward where a selected tab joins the window, gone two thirds of the way
+   across. Laid out over the border box
    it is painted on: sized to the padding box it repeated into the bottom
    border as a thin colored line. */
 .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background>.tab-context-line {
@@ -55,10 +56,10 @@
     --myfox-container-tint: color-mix(in srgb, var(--identity-tab-color) 20%, transparent);
 }
 #tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
-    background-image: linear-gradient(to left, var(--myfox-container-tint), transparent 67%) !important;
+    background-image: linear-gradient(to right, var(--myfox-container-tint), transparent 67%) !important;
 }
 :root:has(#sidebar-container[sidebar-positionend]) #tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid]>.tab-stack>.tab-background {
-    background-image: linear-gradient(to right, var(--myfox-container-tint), transparent 67%) !important;
+    background-image: linear-gradient(to left, var(--myfox-container-tint), transparent 67%) !important;
 }
 
 /* Tab height: 30px (Firefox's compact density gives 28-29px). */

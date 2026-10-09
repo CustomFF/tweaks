@@ -8,6 +8,7 @@
 - Address bar suggestions and the search-engine menu run the full width of their dropdowns, the menu's icons lined up with the engine button
 - The translation offer panel is more compact
 - Container tabs are tinted with the container's color, fading from the outer edge, instead of a straight line across the rounded tab
+- Vertical tabs are part of the window like horizontal ones: they run to the edge of their column, the selected one flows into the window with curved corners, and the column lines up with the page
 - Vertical tabs sit right against each other, with no gap between them
 - Switching to vertical tabs no longer turns the whole window the darker frame color
 - Tab previews cast a lighter shadow
