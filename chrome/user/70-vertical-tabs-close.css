@@ -1,6 +1,20 @@
 /* Vertical tabs; tab close button on hover.
    User sheet, imported by ../userChrome.css. */
 
+/* The window keeps its horizontal-tabs colors. With vertical tabs Firefox
+   makes the navigation bar part of the title bar and drops the toolbar
+   color from the area around the page, so the whole window turned the
+   darker frame color. Toolbars and that area get the toolbar color back;
+   the tab column takes the frame color, as the tab strip has it, so the
+   selected tab (toolbar color) still stands out. */
+:root:has(#tabbrowser-tabs[orient="vertical"]) :is(#nav-bar, #PersonalToolbar, #browser) {
+    background-color: var(--toolbar-background-color) !important;
+    color: var(--toolbar-text-color) !important;
+}
+:root:has(#tabbrowser-tabs[orient="vertical"]) #sidebar-container {
+    background-color: var(--toolbox-background-color) !important;
+}
+
 /* Vertical Tabs Styling (matches Sidebery look: cards with rounded corners, no selected "ears", close button on hover only) */
 
 /* Hide the curved "ears" on selected tabs when in vertical mode */
