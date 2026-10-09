@@ -83,10 +83,11 @@
    sidesteps the alpha-stacking entirely instead of trying to
    position/mask around it. */
 .tabbrowser-tab:hover:not([selected]):not([multiselected]) .tab-background {
-    /* Same 17% tab-text-color overlay Firefox uses, but pre-mixed over the
-       selected-tab/toolbar color so it is opaque and follows the theme
-       (a fixed rgb here looked wrong on light themes). */
-    background-color: color-mix(in srgb, currentColor 17%, var(--tab-background-color-selected)) !important;
+    /* Firefox's tab-text-color overlay (17%, stronger on a light theme:
+       --myfox-tab-hover), pre-mixed over the selected-tab/toolbar color so it
+       is opaque and follows the theme (a fixed rgb here looked wrong on
+       light themes). */
+    background-color: color-mix(in srgb, currentColor var(--myfox-tab-hover), var(--tab-background-color-selected)) !important;
 }
 
 /* The built-in light theme paints the selected tab with a blue-to-orange
