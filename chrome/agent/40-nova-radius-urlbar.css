@@ -66,6 +66,19 @@ panel[type="arrow"] {
        inside it. */
     --urlbar-inner-border-radius: calc(var(--myfox-radius) - 1px) !important;
 }
+/* Result rows run the list's full width, like the rows of the other menus
+   and panels: no side padding around them, no rounded highlight. */
+.urlbarView {
+    padding-inline: 0 !important;
+}
+.urlbarView-row {
+    border-radius: 0 !important;
+}
+/* The buttons in a result row ("..." menu, dismiss): circles otherwise. The
+   radius of the boxes inside the bar (#urlbar above). */
+.urlbarView-button {
+    border-radius: var(--urlbar-inner-border-radius) !important;
+}
 /* The "Switch to tab" pill is taller than the compact row's content box, so
    the row clipped its bottom edge. Trim the pill's vertical padding. */
 .urlbarView-action.urlbarView-switchToTab {
